@@ -1,0 +1,14 @@
+.navGradient {
+  background-image: linear-gradient(
+    to right,
+    rgb(51, 97, 185),
+    rgb(32, 10, 76)
+  );
+}
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
