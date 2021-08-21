@@ -9,9 +9,93 @@
     <title>Weather App</title>
 </head>
 <body>
-    <nav class="navGradient">
-        <h1>Weather Dashboard</h1>
-    </nav>
+    <header>
+        <!--Header/navBar-->
+        <nav class="navGradient">
+            <h1>Weather Dashboard</h1>
+        </nav>
+    </header>
+    <!--Container for main-->
+    <main class=" container container-fluid costumContainer">
+        <div class="row">
+            <div class="col-lg-3 searchCity">
+                <!--searchCityDiv start-->
+                <div class="searchCityDiv">
+                    <label for="searchCity">Search for a City:</label>
+                    <input type="text" name="searchCity" id="searchCity">
+                    <br>
+                    <button class="btn searchBtn" type="submit">Search</button>
+                </div>
+                <!--searchCityDiv end ^^-->
+                <!--searchED Cities Div start-->
+                    <div class="card searchedCities" style="width: 18rem;">
+                        <ul class="list-group">
+                          <li class="list-group-item">Cras justo odio</li>
+                          <li class="list-group-item">Dapibus ac facilisis in</li>
+                          <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                      </div>
+                <!--searchED Cities Div end ^^-->
+            </div>
+            <!--Weather info-->
+            <div class="weatherInfo col-lg-9">
+                <!--current weather-->
+                <div class="row currentWeather">
+                    <h2 class="cityNameDate">Atlanta (3/30/2021)</h2>
+                    <p class="temp">Temp:</p>
+                    <p class="wind">Wind: </p>
+                    <p class="humidity">Humidity</p>
+                    <p class="uvIndex">UV index</p>
+                </div>
+                <!--5 day forecast-->
+                <h3>5-Day Forecast:</h2>
+                <div class="row forecast">
+                        <div class="col day">
+                            <div class="forecastDay">
+                                <h4>Date</h4>
+                                <p>Temp</p>
+                                <p>Wind</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                        <div class="col day">
+                            <div class="forecastDay">
+                                <h4>Date</h4>
+                                <p>Temp</p>
+                                <p>Wind</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                        <div class="col day">
+                            <div class="forecastDay">
+                                <h4>Date</h4>
+                                <p>Temp</p>
+                                <p>Wind</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                        <div class="col day">
+                            <div class="forecastDay">
+                                <h4>Date</h4>
+                                <p>Temp</p>
+                                <p>Wind</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                        <div class="col day">
+                            <div class="forecastDay">
+                                <h4>Date</h4>
+                                <p>Temp</p>
+                                <p>Wind</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                    </div>
+                           
+            </div>
+        </div>
+    </main>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./assets/js/main.js"></script>
