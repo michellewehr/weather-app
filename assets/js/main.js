@@ -18,7 +18,7 @@ function getCity() {
        //if no 404 error/ response.ok = successful, if not alert if there is a 404 error
        if(response.ok) {
         response.json().then(function(data) {
-            getLatLong(data);
+            getCurrentWeather(data);
         });
     } else {
         alert("Please enter a valid city.");
@@ -30,7 +30,7 @@ function getCity() {
     })
 }
 
-function getLatLong(city) {
+function getCurrentWeather(city) {
     //get latitude and longitude for city to pass into fetch request
     var latitude = city[0].lat;
     var longitude = city[0].lon;
@@ -49,18 +49,10 @@ function getLatLong(city) {
                 var currentHumidity = data.current.humidity;
                 var currentUvIndex = data.current.uvi;
 
-                // <div class="row currentWeather">
-                // <h2 class="cityNameDate"></h2>
-                // <p class="temp">Temp:</p>
-                // <p class="wind">Wind: </p>
-                // <p class="humidity">Humidity</p>
-                // <p class="uvIndex">UV index</p>
-
                 $(".temp").text("Temp: " + currentTemp + "\u00B0 F"); 
-                console.log(currentTemp);
-                console.log(currentWindSpeed);
-                console.log(currentHumidity);
-                console.log(currentUvIndex);
+                $(".wind").text("Wind: " + currentWindSpeed + " MPH");
+                $(".humidity").text("Humidity: " + currentHumidity + " %");
+                $(".uvIndex").text("UV Index: " + currentUvIndex);
             })
         } 
     })
