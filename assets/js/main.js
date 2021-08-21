@@ -2,6 +2,11 @@ var searchCityEl = document.getElementById("searchCity");
 var cityHeadingEl = document.querySelector(".cityNameDate");
 //api key from profile
 var apiKey = "&appid=ed2f5e6646f77e93759b1b042975be69";
+// Declares a 'list' variable that holds the parsed searched cities retrieved from 'localStorage'
+// If there is nothing in 'localStorage', sets the 'list' to an empty array
+var searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+
+//when click button to search, functions begin
 $(".searchBtn").on("click", getCity);
 
 function getCity() {
@@ -9,6 +14,12 @@ function getCity() {
     var date = moment().format("MM/DD/YYYY");
     var city = searchCityEl.value
     cityHeadingEl.textContent = city + " (" + date + ")";
+
+    //save city to local storage
+    searchedCities.push(city);
+    localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
+    //show cities in list
+
 
     //format weather api url to get long/lat
     var weatherApiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + apiKey;
@@ -31,7 +42,8 @@ function getCity() {
 }
 
 function getCurrentWeather(city) {
-
+    //clear input text box
+    searchCityEl.value = "";
     //get latitude and longitude for city to pass into fetch request
     var latitude = city[0].lat;
     var longitude = city[0].lon;
@@ -95,15 +107,6 @@ function fiveDayForecast(latitude, longitude){
             response.json().then(function(data) {
                 var dailyArray = data.daily;
 
-                // <div class="col day">
-                //             <div class="forecastDay">
-                //                 <h4>Date</h4>
-                //                 <p>Temp</p>
-                //                 <p>Wind</p>
-                //                 <p>Humidity</p>
-                //             </div>
-                //         </div>
-
                 for(i = 1; i < 6; i++) {
                     //create div to hold each day info
                     var forecastDay = document.createElement("div");
@@ -113,10 +116,11 @@ function fiveDayForecast(latitude, longitude){
                     var unixDate = data.daily[i].dt;
                     var dateToShow = moment.unix(unixDate).format("MM/DD/YYYY");
                     var dayDateEl = document.createElement("h4");
+                    dayDateEl.classList = "dailyForecastDate";
                     dayDateEl.textContent = dateToShow;
                     forecastDay.appendChild(dayDateEl);
 
-                    //show weather icon fo  each day
+                    //show weather icon for  each day
                     var dailyIcon = data.daily[i].weather[0].icon;
                     var dailyIconEl = document.createElement("img");
                     dailyIconEl.src = "http://openweathermap.org/img/wn/" + dailyIcon + ".png";
@@ -136,15 +140,31 @@ function fiveDayForecast(latitude, longitude){
                     var dailyHumidity = document.createElement("p");
                     dailyHumidity.textContent = "Humidity: " + data.daily[i].humidity + "%";
                     forecastDay.appendChild(dailyHumidity);
-                    
-                    
-                    // console.log(data.daily[i].weather[0].icon);
-                    // console.log(data.daily[i].temp.day)
-                    // console.log(data.daily[i].wind_speed)
-                    // console.log(data.daily[i].humidity)
                 }
             })
         }
     })
 }
 
+//display searched city list
+function displaySearchedCities() {
+//     <div class="searchedCities">
+//     <ul class="searchedCitiesList">
+//       <li class="list-item searchedCity">Cras justo odio</li>
+//       <li class="list-item">Dapibus ac facilisis in</li>
+//       <li class="list-item">Vestibulum at eros</li>
+//     </ul>
+//   </div>
+    for(i = 0; i < searchedCities.length; i++) {
+        //for each searched city create list item
+        var searchedCityListEl = document.createElement("li");
+        searchedCityListEl.classList = "searchedCity";
+        var searchedCityBtn = document.createElement("button");
+        searchedCityBtn.classList = "btn cityBtn";
+        searchedCityBtn.textContent = searchedCities[i];
+        searchedCityListEl.appendChild(searchedCityBtn);
+        $(".searchedCitiesList").append(searchedCityListEl);
+    }
+}
+
+displaySearchedCities();
