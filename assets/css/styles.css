@@ -21,10 +21,10 @@ h1 {
   text-align: center;
   padding: 1rem;
 }
-/* container custom */
-.customContainer {
-  padding: 0;
-  margin-left: 0;
+/*my container*/
+.myContainer {
+  margin: 1rem;
+  max-width: 98%;
 }
 /* search div */
 .searchCity {
@@ -32,7 +32,7 @@ h1 {
 }
 .searchCityDiv input,
 .searchBtn {
-  width: 18rem;
+  width: 90%;
 }
 .searchCityDiv label {
   color: black;
@@ -40,7 +40,7 @@ h1 {
   font-weight: bold;
 }
 .searchCityDiv input {
-  border: 1px solid black;
+  border: 1px solid rgb(174, 174, 174);
   height: 2.5rem;
   border-radius: 5px;
   margin-top: 1rem;
@@ -48,12 +48,27 @@ h1 {
 .searchBtn {
   color: white;
   background-color: rgb(80, 152, 230);
-  margin: 1rem 0;
+  margin-top: 1rem;
+}
+hr {
+  width: 90%;
+}
+.searchedCitiesList {
+  list-style: none;
+  margin: 0%;
+  padding: 0;
+  width: 90%;
+}
+.list-item {
+  background-color: rgb(174, 174, 174);
+  margin-top: 1rem;
+  text-align: center;
+  margin-left: 0%;
+  padding: 0.5rem;
+  border-radius: 5px;
 }
 /* searched city list */
-.list-group-item {
-  text-align: center;
-}
+
 /* current weather */
 .weatherInfo {
   padding-left: 0;
@@ -67,4 +82,8 @@ h1 {
   background-color: rgb(45, 62, 80);
   color: white;
   margin-right: 1rem;
+}
+.forecastHeading {
+  font-weight: bold;
+  margin: 1rem 0;
 }

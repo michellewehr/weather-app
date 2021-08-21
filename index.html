@@ -16,7 +16,7 @@
         </nav>
     </header>
     <!--Container for main-->
-    <main class=" container container-fluid costumContainer">
+    <main class=" container container-fluid myContainer">
         <div class="row">
             <div class="col-lg-3 searchCity">
                 <!--searchCityDiv start-->
@@ -26,19 +26,20 @@
                     <br>
                     <button class="btn searchBtn" type="submit">Search</button>
                 </div>
+                <hr>
                 <!--searchCityDiv end ^^-->
                 <!--searchED Cities Div start-->
-                    <div class="card searchedCities" style="width: 18rem;">
-                        <ul class="list-group">
-                          <li class="list-group-item">Cras justo odio</li>
-                          <li class="list-group-item">Dapibus ac facilisis in</li>
-                          <li class="list-group-item">Vestibulum at eros</li>
+                    <div class="searchedCities">
+                        <ul class="searchedCitiesList">
+                          <li class="list-item searchedCity">Cras justo odio</li>
+                          <li class="list-item">Dapibus ac facilisis in</li>
+                          <li class="list-item">Vestibulum at eros</li>
                         </ul>
                       </div>
                 <!--searchED Cities Div end ^^-->
             </div>
             <!--Weather info-->
-            <div class="weatherInfo col-lg-9">
+            <div class="weatherInfo col-lg-9 ">
                 <!--current weather-->
                 <div class="row currentWeather">
                     <h2 class="cityNameDate">Atlanta (3/30/2021)</h2>
@@ -48,8 +49,8 @@
                     <p class="uvIndex">UV index</p>
                 </div>
                 <!--5 day forecast-->
-                <h3>5-Day Forecast:</h2>
                 <div class="row forecast">
+                    <h3 class="forecastHeading">5-Day Forecast:</h2>
                         <div class="col day">
                             <div class="forecastDay">
                                 <h4>Date</h4>
