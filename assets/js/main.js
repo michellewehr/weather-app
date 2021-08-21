@@ -31,6 +31,7 @@ function getCity() {
 }
 
 function getCurrentWeather(city) {
+
     //get latitude and longitude for city to pass into fetch request
     var latitude = city[0].lat;
     var longitude = city[0].lon;
@@ -43,8 +44,16 @@ function getCurrentWeather(city) {
         //if no error 
         if(response.ok) {
             response.json().then(function(data) {
+                //get main weather icon
+                var weatherIconInfo = data.current.weather[0].icon;
+                console.log(weatherIconInfo);
+
+                var weatherIconEl = document.createElement("img");
+                weatherIconEl.src = "http://openweathermap.org/img/wn/" + weatherIconInfo + "@2x.png";
+                cityHeadingEl.appendChild(weatherIconEl);
+
+                //get info for current weather div list 
                 var currentTemp = data.current.temp;
-                console.log(data.current);
                 var currentWindSpeed = data.current.wind_speed;
                 var currentHumidity = data.current.humidity;
                 var currentUvIndex = data.current.uvi;
@@ -53,16 +62,17 @@ function getCurrentWeather(city) {
                 currentUvEl.textContent = currentUvIndex;
                 if(currentUvIndex <= 2) {
                     currentUvEl.classList = "favorable";
-                } else if(currentUvEl > 2 && currentUvIndex < 6) {
+                } else if(currentUvIndex > 2 && currentUvIndex < 6) {
                     currentUvEl.classList = "moderate";
-                } else if (currentUvEl >= 6) {
+                } else if (currentUvIndex >= 6) {
                     currentUvEl.classList = "severe";
                 }
-
+                //show it on the current weather div
                 $(".temp").text("Temp: " + currentTemp + "\u00B0 F"); 
                 $(".wind").text("Wind: " + currentWindSpeed + " MPH");
                 $(".humidity").text("Humidity: " + currentHumidity + " %");
                 $(".uvIndex").text("UV Index: ").append(currentUvEl);
+
             })
         } 
     })

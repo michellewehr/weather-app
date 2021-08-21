@@ -90,7 +90,6 @@ hr {
 
 /*uv index*/
 .favorable,
-.moderate,
 .severe {
   padding: 0.25rem;
   border-radius: 5px;
@@ -101,6 +100,9 @@ hr {
 }
 .moderate {
   background-color: yellow;
+  padding: 0.25rem;
+  border-radius: 5px;
+  color: black;
 }
 .severe {
   background-color: red;
