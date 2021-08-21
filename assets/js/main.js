@@ -115,7 +115,12 @@ function fiveDayForecast(latitude, longitude){
                     var dayDateEl = document.createElement("h4");
                     dayDateEl.textContent = dateToShow;
                     forecastDay.appendChild(dayDateEl);
-        
+
+                    //show weather icon fo  each day
+                    var dailyIcon = data.daily[i].weather[0].icon;
+                    var dailyIconEl = document.createElement("img");
+                    dailyIconEl.src = "http://openweathermap.org/img/wn/" + dailyIcon + ".png";
+                    forecastDay.appendChild(dailyIconEl);
                     // console.log(data.daily[i].weather[0].icon);
                     // console.log(data.daily[i].temp.day)
                     // console.log(data.daily[i].wind_speed)
