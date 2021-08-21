@@ -1,18 +1,20 @@
 var searchCityEl = document.getElementById("searchCity");
 var cityHeadingEl = document.querySelector(".cityNameDate");
 //api key from profile
-var apiKey = "&appid=ed2f5e6646f77e93759b1b042975be69";
+var apiKey = "&appid=b1753ec59a219420447810a8ba1a0092";
 // Declares a 'list' variable that holds the parsed searched cities retrieved from 'localStorage'
 // If there is nothing in 'localStorage', sets the 'list' to an empty array
 var searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
 
+
+
 //when click button to search, functions begin
 $(".searchBtn").on("click", getCity);
 
-function getCity() {
+function getCity(city) {
     //show city and date in currentWeather div
     var date = moment().format("MM/DD/YYYY");
-    var city = searchCityEl.value
+    city = searchCityEl.value || city;
     cityHeadingEl.textContent = city + " (" + date + ")";
 
     //save city to local storage
@@ -47,10 +49,8 @@ function getCurrentWeather(city) {
     //get latitude and longitude for city to pass into fetch request
     var latitude = city[0].lat;
     var longitude = city[0].lon;
-    console.log(latitude);
-    console.log(longitude);
 
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&units=imperial" + apiKey;
+    var apiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&units=imperial" + apiKey; 
 
     fetch(apiUrl).then(function(response) {
         //if no error 
@@ -97,9 +97,7 @@ function getCurrentWeather(city) {
 }
 //five day forecast
 function fiveDayForecast(latitude, longitude){
-    //define api for 5 day forecast
     var forecastApiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=current,minutely,hourly,alerts" + "&units=imperial" + apiKey; 
-    
     //fetch 
     fetch(forecastApiUrl).then(function(response) {
         //if no error 
@@ -148,13 +146,6 @@ function fiveDayForecast(latitude, longitude){
 
 //display searched city list
 function displaySearchedCities() {
-//     <div class="searchedCities">
-//     <ul class="searchedCitiesList">
-//       <li class="list-item searchedCity">Cras justo odio</li>
-//       <li class="list-item">Dapibus ac facilisis in</li>
-//       <li class="list-item">Vestibulum at eros</li>
-//     </ul>
-//   </div>
     for(i = 0; i < searchedCities.length; i++) {
         //for each searched city create list item
         var searchedCityListEl = document.createElement("li");
@@ -167,4 +158,8 @@ function displaySearchedCities() {
     }
 }
 
+$(document).on("click", ".cityBtn", function() {
+    var btnCity = event.target.textContent
+    getCity(btnCity);
+})
 displaySearchedCities();
