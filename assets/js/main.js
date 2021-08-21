@@ -6,10 +6,19 @@ var apiKey = "&appid=b1753ec59a219420447810a8ba1a0092";
 // If there is nothing in 'localStorage', sets the 'list' to an empty array
 var searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
 
-
-
-//when click button to search, functions begin
-$(".searchBtn").on("click", getCity);
+//display searched city list
+function displaySearchedCities() {
+    for(i = 0; i < searchedCities.length; i++) {
+        //for each searched city create list item
+        var searchedCityListEl = document.createElement("li");
+        searchedCityListEl.classList = "searchedCity";
+        var searchedCityBtn = document.createElement("button");
+        searchedCityBtn.classList = "btn cityBtn";
+        searchedCityBtn.textContent = searchedCities[i];
+        searchedCityListEl.appendChild(searchedCityBtn);
+        $(".searchedCitiesList").append(searchedCityListEl);
+    }
+}
 
 function getCity(city) {
     //show city and date in currentWeather div
@@ -86,6 +95,7 @@ function getCurrentWeather(city) {
                 $(".uvIndex").text("UV Index: ").append(currentUvEl);
 
                 fiveDayForecast(latitude, longitude);
+                addSearchedCity();
                 
             })
         } 
@@ -144,20 +154,20 @@ function fiveDayForecast(latitude, longitude){
     })
 }
 
-//display searched city list
-function displaySearchedCities() {
-    for(i = 0; i < searchedCities.length; i++) {
-        //for each searched city create list item
-        var searchedCityListEl = document.createElement("li");
-        searchedCityListEl.classList = "searchedCity";
-        var searchedCityBtn = document.createElement("button");
-        searchedCityBtn.classList = "btn cityBtn";
-        searchedCityBtn.textContent = searchedCities[i];
-        searchedCityListEl.appendChild(searchedCityBtn);
-        $(".searchedCitiesList").append(searchedCityListEl);
-    }
+function addSearchedCity() {
+       //add city to searched city list with button 
+       var lastSearchedCityList = document.createElement("li")
+       lastSearchedCityList.classList = "searchedCity";
+       var lastSearchedCityBtn = document.createElement("button");
+       lastSearchedCityBtn.classList = "btn cityBtn";
+       lastSearchedCityBtn.textContent = searchedCities[searchedCities.length - 1];
+       lastSearchedCityList.appendChild(lastSearchedCityBtn);
+       $(".searchedCitiesList").append(lastSearchedCityList);
 }
 
+//when click button to search, functions begin
+$(".searchBtn").on("click", getCity);
+// add city button functionality
 $(document).on("click", ".cityBtn", function() {
     var btnCity = event.target.textContent
     getCity(btnCity);
