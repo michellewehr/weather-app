@@ -95,11 +95,31 @@ function fiveDayForecast(latitude, longitude){
             response.json().then(function(data) {
                 var dailyArray = data.daily;
 
+                // <div class="col day">
+                //             <div class="forecastDay">
+                //                 <h4>Date</h4>
+                //                 <p>Temp</p>
+                //                 <p>Wind</p>
+                //                 <p>Humidity</p>
+                //             </div>
+                //         </div>
+
                 for(i = 1; i < 6; i++) {
-                    console.log(data.daily[i].weather[0].icon);
-                    console.log(data.daily[i].temp.day)
-                    console.log(data.daily[i].wind_speed)
-                    console.log(data.daily[i].humidity)
+                    //create div to hold each day info
+                    var forecastDay = document.createElement("div");
+                    forecastDay.classList = "forecastDay col";
+                    $(".forecast").append(forecastDay);
+                    //show date
+                    var unixDate = data.daily[i].dt;
+                    var dateToShow = moment.unix(unixDate).format("MM/DD/YYYY");
+                    var dayDateEl = document.createElement("h4");
+                    dayDateEl.textContent = dateToShow;
+                    forecastDay.appendChild(dayDateEl);
+        
+                    // console.log(data.daily[i].weather[0].icon);
+                    // console.log(data.daily[i].temp.day)
+                    // console.log(data.daily[i].wind_speed)
+                    // console.log(data.daily[i].humidity)
                 }
             })
         }

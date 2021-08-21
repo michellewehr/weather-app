@@ -78,7 +78,7 @@ hr {
   border: 1px solid black;
 }
 /* Five Day forecast*/
-.day {
+.forecastDay {
   background-color: rgb(45, 62, 80);
   color: white;
   margin-right: 1rem;
