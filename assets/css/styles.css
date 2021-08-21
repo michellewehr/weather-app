@@ -87,3 +87,21 @@ hr {
   font-weight: bold;
   margin: 1rem 0;
 }
+
+/*uv index*/
+.favorable,
+.moderate,
+.severe {
+  padding: 0.25rem;
+  border-radius: 5px;
+  color: white;
+}
+.favorable {
+  background-color: green;
+}
+.moderate {
+  background-color: yellow;
+}
+.severe {
+  background-color: red;
+}

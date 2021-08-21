@@ -48,11 +48,21 @@ function getCurrentWeather(city) {
                 var currentWindSpeed = data.current.wind_speed;
                 var currentHumidity = data.current.humidity;
                 var currentUvIndex = data.current.uvi;
+                //for uv element to create color coding of value
+                var currentUvEl = document.createElement("span");
+                currentUvEl.textContent = currentUvIndex;
+                if(currentUvIndex <= 2) {
+                    currentUvEl.classList = "favorable";
+                } else if(currentUvEl > 2 && currentUvIndex < 6) {
+                    currentUvEl.classList = "moderate";
+                } else if (currentUvEl >= 6) {
+                    currentUvEl.classList = "severe";
+                }
 
                 $(".temp").text("Temp: " + currentTemp + "\u00B0 F"); 
                 $(".wind").text("Wind: " + currentWindSpeed + " MPH");
                 $(".humidity").text("Humidity: " + currentHumidity + " %");
-                $(".uvIndex").text("UV Index: " + currentUvIndex);
+                $(".uvIndex").text("UV Index: ").append(currentUvEl);
             })
         } 
     })
