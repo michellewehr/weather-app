@@ -121,6 +121,23 @@ function fiveDayForecast(latitude, longitude){
                     var dailyIconEl = document.createElement("img");
                     dailyIconEl.src = "http://openweathermap.org/img/wn/" + dailyIcon + ".png";
                     forecastDay.appendChild(dailyIconEl);
+
+                    //show daily temp for the day
+                    var dailyTemp = document.createElement("p");
+                    dailyTemp.textContent = "Temp: " + data.daily[i].temp.day + "\u00B0 F";
+                    forecastDay.appendChild(dailyTemp);
+
+                    //show daily wind speed for the day
+                    var dailyWind = document.createElement("p");
+                    dailyWind.textContent = "Wind: " + data.daily[i].wind_speed + " MPH";
+                    forecastDay.appendChild(dailyWind);
+                    
+                    // show daily humidity
+                    var dailyHumidity = document.createElement("p");
+                    dailyHumidity.textContent = "Humidity: " + data.daily[i].humidity + "%";
+                    forecastDay.appendChild(dailyHumidity);
+                    
+                    
                     // console.log(data.daily[i].weather[0].icon);
                     // console.log(data.daily[i].temp.day)
                     // console.log(data.daily[i].wind_speed)
