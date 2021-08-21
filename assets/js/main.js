@@ -49,7 +49,7 @@ function getCurrentWeather(city) {
                 console.log(weatherIconInfo);
 
                 var weatherIconEl = document.createElement("img");
-                weatherIconEl.src = "http://openweathermap.org/img/wn/" + weatherIconInfo + "@2x.png";
+                weatherIconEl.src = "http://openweathermap.org/img/wn/" + weatherIconInfo + ".png";
                 cityHeadingEl.appendChild(weatherIconEl);
 
                 //get info for current weather div list 
@@ -73,6 +73,8 @@ function getCurrentWeather(city) {
                 $(".humidity").text("Humidity: " + currentHumidity + " %");
                 $(".uvIndex").text("UV Index: ").append(currentUvEl);
 
+                fiveDayForecast(latitude, longitude);
+                
             })
         } 
     })
@@ -81,3 +83,26 @@ function getCurrentWeather(city) {
         alert("Unable to connect to One Call")
     });
 }
+//five day forecast
+function fiveDayForecast(latitude, longitude){
+    //define api for 5 day forecast
+    var forecastApiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=current,minutely,hourly,alerts" + "&units=imperial" + apiKey; 
+    
+    //fetch 
+    fetch(forecastApiUrl).then(function(response) {
+        //if no error 
+        if(response.ok) {
+            response.json().then(function(data) {
+                var dailyArray = data.daily;
+
+                for(i = 1; i < 6; i++) {
+                    console.log(data.daily[i].weather[0].icon);
+                    console.log(data.daily[i].temp.day)
+                    console.log(data.daily[i].wind_speed)
+                    console.log(data.daily[i].humidity)
+                }
+            })
+        }
+    })
+}
+
