@@ -130,7 +130,7 @@ function fiveDayForecast(latitude, longitude){
                     //show weather icon for  each day
                     var dailyIcon = data.daily[i].weather[0].icon;
                     var dailyIconEl = document.createElement("img");
-                    dailyIconEl.src = "http://openweathermap.org/img/wn/" + dailyIcon + ".png";
+                    dailyIconEl.src = "https://openweathermap.org/img/wn/" + dailyIcon + ".png";
                     forecastDay.appendChild(dailyIconEl);
 
                     //show daily temp for the day
