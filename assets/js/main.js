@@ -107,6 +107,7 @@ function getCurrentWeather(city) {
 }
 //five day forecast
 function fiveDayForecast(latitude, longitude){
+    //clear five day forecast div to just show the heading prior to creating new elements for 5 day forecast
     $(".forecast").html("<h3 class='forecastHeading'>5-Day Forecast:</h3>");
     var forecastApiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=current,minutely,hourly,alerts" + "&units=imperial" + apiKey; 
     //fetch 
