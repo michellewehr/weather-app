@@ -30,10 +30,14 @@ h1 {
 .searchCity {
   padding: 0;
 }
+input {
+  padding: 5px;
+}
 .searchCityDiv input,
 .searchBtn {
   width: 90%;
 }
+
 .searchCityDiv label {
   color: black;
   font-size: 2rem;

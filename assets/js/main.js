@@ -107,7 +107,7 @@ function getCurrentWeather(city) {
 }
 //five day forecast
 function fiveDayForecast(latitude, longitude){
-    
+    $(".forecast").html("<h3 class='forecastHeading'>5-Day Forecast:</h3>");
     var forecastApiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=current,minutely,hourly,alerts" + "&units=imperial" + apiKey; 
     //fetch 
     fetch(forecastApiUrl).then(function(response) {
