@@ -19,7 +19,6 @@ function displaySearchedCities() {
         $(".searchedCitiesList").append(searchedCityListEl);
     }
 }
-
 function getCity(city) {
     //show city and date in currentWeather div
     var date = moment().format("MM/DD/YYYY");
@@ -67,8 +66,6 @@ function getCurrentWeather(city) {
             response.json().then(function(data) {
                 //get main weather icon
                 var weatherIconInfo = data.current.weather[0].icon;
-                console.log(weatherIconInfo);
-
                 var weatherIconEl = document.createElement("img");
                 weatherIconEl.src = "https://openweathermap.org/img/wn/" + weatherIconInfo + ".png";
                 cityHeadingEl.appendChild(weatherIconEl);
