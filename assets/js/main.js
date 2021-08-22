@@ -107,6 +107,7 @@ function getCurrentWeather(city) {
 }
 //five day forecast
 function fiveDayForecast(latitude, longitude){
+    
     var forecastApiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=current,minutely,hourly,alerts" + "&units=imperial" + apiKey; 
     //fetch 
     fetch(forecastApiUrl).then(function(response) {
@@ -138,6 +139,7 @@ function fiveDayForecast(latitude, longitude){
                     var dailyTemp = document.createElement("p");
                     dailyTemp.textContent = "Temp: " + data.daily[i].temp.day + "\u00B0 F";
                     forecastDay.appendChild(dailyTemp);
+
 
                     //show daily wind speed for the day
                     var dailyWind = document.createElement("p");
