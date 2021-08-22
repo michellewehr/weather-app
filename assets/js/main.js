@@ -23,7 +23,7 @@ function displaySearchedCities() {
 function getCity(city) {
     //show city and date in currentWeather div
     var date = moment().format("MM/DD/YYYY");
-    city = searchCityEl.value || city;
+    city = searchCityEl.value.trim() || city;
     cityHeadingEl.textContent = city + " (" + date + ")";
 
     //save city to local storage
@@ -70,7 +70,7 @@ function getCurrentWeather(city) {
                 console.log(weatherIconInfo);
 
                 var weatherIconEl = document.createElement("img");
-                weatherIconEl.src = "http://openweathermap.org/img/wn/" + weatherIconInfo + ".png";
+                weatherIconEl.src = "https://openweathermap.org/img/wn/" + weatherIconInfo + ".png";
                 cityHeadingEl.appendChild(weatherIconEl);
 
                 //get info for current weather div list 
